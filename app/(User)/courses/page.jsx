@@ -4,6 +4,7 @@ import CourseCard from './CourseCard'
 import Navbar from '@/Components/NavbarForOthers'
 import { useEffect } from 'react'
 import Cookies from 'js-cookie';
+import Script from 'next/script'
 
 const links = [
   {
@@ -60,7 +61,7 @@ const Home = () => {
     })}
     </div>
     </div>
-    <script src="https://dragline-center.h5p.com/js/h5p-resizer.js" charset="UTF-8"></script>
+    <Script src="https://dragline-center.h5p.com/js/h5p-resizer.js" charset="UTF-8"></Script>
     </>
   )
 }

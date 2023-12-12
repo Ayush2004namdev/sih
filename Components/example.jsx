@@ -9,7 +9,6 @@ export default function Example() {
     <>
     <div className="bg-black bg-opacity-60 inset-0 fixed top-0 left-0"></div>
     <div className="bg-white imm">
-      
 
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
@@ -55,7 +54,6 @@ export default function Example() {
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   </>
