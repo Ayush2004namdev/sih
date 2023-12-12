@@ -1,7 +1,25 @@
+'use client'
+import axios from 'axios'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { redirect } from 'next/navigation'
 
 const Login = () => {
+  const [err,setErr] = useState('')
+  const [email,setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const handleLoginBtnClick =async (e) => {
+    e.preventDefault()
+    const data = await axios.post('/api/login',{password,email})
+    console.log(data.data.msg)
+    if(data.data.token){
+      window.location.href = '/user';
+    }
+    else{
+      setErr(data.data.msg)
+    }
+  }
+
   return (
     <>
    <div className="flex md:mx-auto md:max-w-2xl min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -25,6 +43,8 @@ const Login = () => {
                 <input
                   id="email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   autoComplete="email"
                   required
@@ -42,6 +62,8 @@ const Login = () => {
                 <input
                   id="password"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   type="password"
                   autoComplete="current-password"
                   required
@@ -52,11 +74,14 @@ const Login = () => {
             <div>
               <button
                 type="submit"
+                onClick={handleLoginBtnClick}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
               </button>
             </div>
+            {err ? <h1 className='border text-center border-red-400 px-2 py-1 rounded-lg text-red-600'>{err}</h1> : ''}
+            
           </form>
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{' '}
