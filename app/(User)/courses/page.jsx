@@ -44,7 +44,7 @@ const Home = () => {
   useEffect(() => {
     const something = Cookies.get('token')
     if(!something){
-      window.location.href='/'
+      window.location.href='/login'
     }
   },[])
 
