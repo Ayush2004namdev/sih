@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import Cookies from 'js-cookie';
+import Example from '@/Components/example';
 
 
 
@@ -13,7 +14,11 @@ const Home = () => {
     }
   },[])
   return (
-    <div>Hiiii</div>
+    <>
+    <div className="h-screen w-full">
+    <Example/>
+    </div>
+    </>
   )
 }
 

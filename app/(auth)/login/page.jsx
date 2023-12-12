@@ -4,19 +4,28 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 const Login = () => {
+  const [loggingIn,setLoggingIn] = useState(false)
   const [err,setErr] = useState('')
   const [email,setEmail] = useState('')
   const [password,setPassword] = useState('')
   const handleLoginBtnClick =async (e) => {
+    
     e.preventDefault()
-    const data = await axios.post('/api/login',{password,email})
-    console.log(data.data.msg)
-    if(data.data.token){
-      window.location.href = '/user';
+    setLoggingIn(true)
+    try{
+      const data = await axios.post('/api/login',{password,email})
+      console.log(data.data.msg)
+      if(data.data.token){
+        window.location.href = '/user';
+      }
+      else{
+        setErr(data.data.msg)
+      }
+    }catch(e){
+      setErr('Something Went Wrong')
+      console.log(err)
     }
-    else{
-      setErr(data.data.msg)
-    }
+    setLoggingIn(false)
   }
 
   return (
@@ -76,7 +85,8 @@ const Login = () => {
                 onClick={handleLoginBtnClick}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Sign in
+                {loggingIn ? 'Signing In....' : 'Sign in'}
+                
               </button>
             </div>
             {err ? <h1 className='border text-center border-red-400 px-2 py-1 rounded-lg text-red-600'>{err}</h1> : ''}
