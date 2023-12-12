@@ -16,7 +16,7 @@ const Login = () => {
       const data = await axios.post('/api/login',{password,email})
       console.log(data.data.msg)
       if(data.data.token){
-        window.location.href = '/user';
+        window.location.href = '/';
       }
       else{
         setErr(data.data.msg)
@@ -99,24 +99,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
-        <div className="mt-6">
-            <hr />
-            
-            <div className="max-w-sm mx-auto">
-            <a href="">
-          <div className="h-16 px-3  bg-white mt-3 flex items-center shadow-md text-xl gap-6 justify-start rounded-full border-b-2">
-            <img className="h-12 w-1/6 px-2 py-1 rounded-full bg-white" src="https://imgs.search.brave.com/vTCwcACTcg2o4L_XU9oOIfkA6VLpBo1CJ618ShAOhSI/rs:fit:860:0:0/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE2LzEx/L05ldy1Hb29nbGUt/TG9nby00OTd4NTAw/LmpwZw" alt=""/>
-            <p>Continue with Google</p>
-          </div>
-        </a>
-        <a href="">
-          <div className="h-16 px-3 py-2 bg-white mt-3 flex items-center shadow-md text-xl gap-6 justify-start rounded-full border-b-2">
-            <img className="h-8 w-1/6 rounded-full bg-white" src="https://cdn.logojoy.com/wp-content/uploads/20230921104408/Facebook-logo-600x319.png" alt=""/>
-            <p>Continue with Facebook</p>
-          </div>
-        </a>
-            </div>
-        </div>
+       
       </div>
      </>
   )
